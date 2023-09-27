@@ -17,7 +17,7 @@ def ios_mobile_management():
         "platformName": configuration.settings.ios_platform,
         "platformVersion": configuration.settings.ios_version,
 
-    # Set other BrowserStack capabilities
+
         "bstack:options": {
             "userName": configuration.settings.browserstack_username,
             "accessKey": configuration.settings.browserstack_key,

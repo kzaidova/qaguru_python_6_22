@@ -1,10 +1,9 @@
 from allure_commons._allure import step
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
-import pytest
 
 
-def test_search_article_by_title_Appiun():
+def test_search_article_by_title_appium():
     with step('Type "Appium"'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, 'Search Wikipedia')).click()
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/search_src_text')).type('Appium')
@@ -15,7 +14,7 @@ def test_search_article_by_title_Appiun():
         results.first.should(have.text('Appium'))
 
 
-def test_search_article_by_title_Python():
+def test_search_article_by_title_python():
     with step('Type "Python"'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     step_value = 'Python'
