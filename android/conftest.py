@@ -35,6 +35,6 @@ def android_mobile_management():
 
     yield
 
-    attach.attach_browserstack_screenshot()
+    attach.add_screenshot(browser)
 
     browser.quit()

@@ -5,6 +5,7 @@ import pytest
 from appium.options.ios import XCUITestOptions
 
 import os
+import attach
 
 @pytest.fixture(scope='function', autouse=True)
 def ios_mobile_management():
@@ -33,5 +34,6 @@ def ios_mobile_management():
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
     yield
+    attach.add_screenshot(browser)
 
     browser.quit()

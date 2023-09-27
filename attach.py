@@ -1,10 +1,7 @@
 import allure
-from selene import browser
+from allure_commons.types import AttachmentType
 
 
-def attach_browserstack_screenshot():
-    allure.attach(
-        browser.driver.get_screenshot_as_png(),
-        name='screenshot',
-        attachment_type=allure.attachment_type.PNG,
-    )
+def add_screenshot(browser):
+    png = browser.driver.get_screenshot_as_png()
+    allure.attach(body=png, name='Last screenshot', attachment_type=AttachmentType.PNG, extension='.png')
