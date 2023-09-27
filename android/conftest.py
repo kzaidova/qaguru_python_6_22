@@ -41,4 +41,3 @@ def android_mobile_management():
     session_id = browser.driver.session_id
     attach.allure_attach_bstack_video(session_id)
     browser.quit()
-    sleep(5)
