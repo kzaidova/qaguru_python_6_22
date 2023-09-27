@@ -3,6 +3,8 @@ import dotenv
 
 
 class Settings(BaseSettings):
+    login: str
+    password: str
     browserstack_username: str
     browserstack_key: str
     browserstack_url: str = 'http://hub.browserstack.com/wd/hub'
