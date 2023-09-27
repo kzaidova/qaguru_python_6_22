@@ -1,5 +1,10 @@
+from time import sleep
+
 import pytest
 from appium.options.android import UiAutomator2Options
+from random import randrange
+
+from appium import webdriver
 from selene import browser
 import os
 import configuration
@@ -11,12 +16,11 @@ import attach
 def android_mobile_management():
     options = UiAutomator2Options().load_capabilities({
 
-        'platformName': configuration.settings.android_platform,
+        'platformName': 'android',
         'platformVersion': configuration.settings.android_version,
         'deviceName': configuration.settings.android_device,
 
         'app': configuration.settings.app_url,
-
 
         'bstack:options': {
             'projectName': configuration.settings.project_name,
@@ -28,13 +32,15 @@ def android_mobile_management():
         }
     })
 
-    browser.config.driver_remote_url = configuration.settings.browserstack_url
-    browser.config.driver_options = options
+    browser.config.driver = webdriver.Remote(configuration.settings.browserstack_url, options=options)
 
-    browser.config.timeout = float(os.getenv('timeout', '20.0'))
+    browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
     yield
 
-    attach.add_screenshot(browser)
+    attach.allure_attach_bstack_screenshot()
 
+    session_id = browser.driver.session_id
+    attach.allure_attach_bstack_video(session_id)
     browser.quit()
+    sleep(5)

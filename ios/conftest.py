@@ -1,10 +1,11 @@
-import configuration
-from selene import browser
-import pytest
-
 from appium.options.ios import XCUITestOptions
 
+import pytest
+
+from appium import webdriver
+from selene import browser
 import os
+import configuration
 import attach
 
 @pytest.fixture(scope='function', autouse=True)
@@ -28,12 +29,10 @@ def ios_mobile_management():
     }
 })
 
-    browser.config.driver_remote_url = configuration.settings.browserstack_url
-    browser.config.driver_options = options
+    browser.config.driver_remote_url = webdriver.Remote(configuration.settings.browserstack_url,options=options)
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
     yield
-    attach.add_screenshot(browser)
-
+    attach.allure_attach_bstack_screenshot()
     browser.quit()
