@@ -1,0 +1,25 @@
+from pydantic_settings import BaseSettings
+import dotenv
+
+
+class Settings(BaseSettings):
+    browserstack_username: str
+    browserstack_key: str
+    browserstack_url: str = 'http://hub.browserstack.com/wd/hub'
+    app_url: str = 'bs://sample.app'
+    ios_app_url: str = 'bs://99c104945eab5d4e39f419cbbfa298d3379c0518'
+    project_name: str = 'Mobile Tests Lesson 1'
+    build_name: str = 'browserstack-build-1'
+    session_name: str = 'BStack first_test'
+    android_version: str = '9.0'
+    android_device: str = 'Google Pixel 3'
+    android_platform: str = 'android'
+    ios_device: str = 'iPhone XS'
+    ios_version: str = '13'
+    ios_platform: str = 'ios'
+
+
+settings = Settings(_env_file=dotenv.find_dotenv(), _env_file_encoding='utf-8')
+
+
+
