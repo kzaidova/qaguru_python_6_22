@@ -2,11 +2,12 @@ from appium.options.ios import XCUITestOptions
 
 import pytest
 
-from appium import webdriver
 from selene import browser
 import os
 import configuration
-import attach
+from utils import attach
+from appium import webdriver
+
 
 @pytest.fixture(scope='function', autouse=True)
 def ios_mobile_management():
@@ -28,8 +29,7 @@ def ios_mobile_management():
     }
 })
 
-    browser.config.driver_remote_url = configuration.settings.browserstack_url
-    browser.config.driver_options = options
+    browser.config.driver = webdriver.Remote(configuration.settings.browserstack_url, options=options)
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
     yield

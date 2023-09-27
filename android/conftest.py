@@ -2,14 +2,12 @@ from time import sleep
 
 import pytest
 from appium.options.android import UiAutomator2Options
-from random import randrange
 
 from appium import webdriver
 from selene import browser
 import os
 import configuration
-import attach
-
+from utils import attach
 
 
 @pytest.fixture(scope='function', autouse=True)
