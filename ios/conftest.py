@@ -12,8 +12,7 @@ import attach
 def ios_mobile_management():
     options = XCUITestOptions().load_capabilities({
 
-        "app": configuration.settings.ios_app_url,
-
+        "app": 'ios',
 
         "deviceName": configuration.settings.ios_device,
         "platformName": configuration.settings.ios_platform,
@@ -29,7 +28,7 @@ def ios_mobile_management():
     }
 })
 
-    browser.config.driver_remote_url = webdriver.Remote(configuration.settings.browserstack_url,options=options)
+    browser.config.driver_remote_url = webdriver.Remote(configuration.settings.browserstack_url, options=options)
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
