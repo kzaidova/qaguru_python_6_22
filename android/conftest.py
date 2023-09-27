@@ -16,7 +16,7 @@ import attach
 def android_mobile_management():
     options = UiAutomator2Options().load_capabilities({
 
-        'platformName': 'android',
+        'platformName': configuration.settings.android_platform,
         'platformVersion': configuration.settings.android_version,
         'deviceName': configuration.settings.android_device,
 
